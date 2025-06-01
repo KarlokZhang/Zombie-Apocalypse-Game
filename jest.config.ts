@@ -7,7 +7,7 @@ const config: Config = {
     moduleFileExtensions: ['ts', 'js', 'json'],
     roots: ['<rootDir>/src', '<rootDir>/tests'],
     verbose: true,
-    collectCoverage: false,
+    collectCoverage: true,
     coverageDirectory: 'coverage',
     coverageReporters: ['text', 'lcov'],
     collectCoverageFrom: ['src/**/*.{ts,js}', '!src/**/*.d.ts', '!src/**/index.ts'],
