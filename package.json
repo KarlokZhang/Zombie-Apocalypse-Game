@@ -4,7 +4,6 @@
   "description": "Zombie apocalypse game.",
   "author": "Geoge Cheung",
   "license": "MIT",
-  "type": "module",
   "main": "index.js",
   "scripts": {
     "format:check": "prettier --check 'src/**/*.{ts,js,json,md}'",
