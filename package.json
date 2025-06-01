@@ -5,6 +5,7 @@
   "author": "Geoge Cheung",
   "license": "MIT",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "format:check": "prettier --check 'src/**/*.{ts,js,json,md}'",
     "format": "prettier --write 'src/**/*.{ts,js,json,md}'",

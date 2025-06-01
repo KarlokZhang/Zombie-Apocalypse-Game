@@ -1,4 +1,5 @@
 import { Direction, ENTITY_TYPES } from '../constants';
+import { IGameObserver } from '../interface/IGameObserver';
 import { Creature } from '../models/Creature';
 import { Zombie } from '../models/Zombie';
 import { Grid } from './Grid';
@@ -9,12 +10,25 @@ export class Game {
     private grid: Grid;
     private zombieQueue: Zombie[] = [];
     private movement: Movement;
+    private observers: IGameObserver[] = [];
     private moveSequence: Direction[] = [];
 
     constructor(gridSize: number, moveSequence: Direction[], movement?: Movement) {
         this.grid = new Grid(gridSize);
         this.moveSequence = moveSequence;
         this.movement = movement || new Movement();
+    }
+
+    addObserver(observer: IGameObserver): void {
+        this.observers.push(observer);
+    }
+
+    removeObserver(observer: IGameObserver): void {
+        this.observers = this.observers.filter((obs) => obs !== observer);
+    }
+
+    getObservers(): IGameObserver[] {
+        return this.observers;
     }
 
     initializeGame(zombiePosition: Position, creaturePositions: Position[]): void {
@@ -38,6 +52,8 @@ export class Game {
             this.processZombieMovement(zombie);
             currentZombieIndex += 1;
         }
+
+        this.notifySimulationEnd();
     }
 
     private processZombieMovement(zombie: Zombie): void {
@@ -48,6 +64,19 @@ export class Game {
 
             this.checkAndProcessInfection(nextPosition);
             zombie.setPosition(nextPosition);
+
+            this.notifyZombieMovement(zombie.getId(), currentPosition, direction, nextPosition);
+        }
+    }
+
+    private notifyZombieMovement(
+        zombieId: string,
+        currentPosition: Position,
+        direction: Direction,
+        nextPosition: Position,
+    ): void {
+        for (const observer of this.observers) {
+            observer.onZombieMove(zombieId, currentPosition, direction, nextPosition);
         }
     }
 
@@ -66,6 +95,25 @@ export class Game {
         const newZombie = new Zombie(nextPosition);
         this.grid.addEntity(newZombie);
         this.zombieQueue.push(newZombie);
+
+        this.notifyInfection(newZombie.getId(), nextPosition);
+    }
+
+    private notifyInfection(zombieId: string, position: Position): void {
+        for (const observer of this.observers) {
+            observer.onInfection(zombieId, position);
+        }
+    }
+
+    private notifySimulationEnd(): void {
+        const zombiePositions = this.zombieQueue.map((zombie) => zombie.getPosition());
+        const creaturePositions = this.grid
+            .getEntitiesByType(ENTITY_TYPES.CREATURE)
+            .map((creature) => creature.getPosition());
+
+        for (const observer of this.observers) {
+            observer.onSimulationEnd(zombiePositions, creaturePositions);
+        }
     }
 
     getGrid(): Grid {
