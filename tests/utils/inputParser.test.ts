@@ -299,8 +299,8 @@ describe('Input Prompt Utils', () => {
             const calls = mockedReadline.question.mock.calls;
             expect(calls[0][0]).toContain('dimension of the grid');
             expect(calls[1][0]).toContain('initial position of the zombie');
-            expect(calls[2][0]).toContain('list of moves');
-            expect(calls[3][0]).toContain('list of initial positions of the creatures');
+            expect(calls[2][0]).toContain('list of initial positions of the creatures');
+            expect(calls[3][0]).toContain('list of moves');
         });
 
         it('should handle validation failures at each step', async () => {
@@ -343,8 +343,8 @@ describe('Input Prompt Utils', () => {
             mockedReadline.question
                 .mockResolvedValueOnce('  10  ')
                 .mockResolvedValueOnce('  (5,5)  ')
-                .mockResolvedValueOnce('  UDLR  ')
-                .mockResolvedValueOnce('  (0,1)(1,2)  ');
+                .mockResolvedValueOnce('  (0,1)(1,2)  ')
+                .mockResolvedValueOnce('  UDLR  ');
 
             const result = await getValidSimulationInputs(mockedReadline);
 

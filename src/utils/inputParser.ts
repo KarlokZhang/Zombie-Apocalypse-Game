@@ -78,8 +78,8 @@ export type GameInputs = {
 export const getValidSimulationInputs = async (rl: readline.Interface): Promise<GameInputs> => {
     const gridSize = await promptGridSize(rl);
     const zombiePosition = await promptPosition(rl);
-    const moves = await promptMoves(rl);
     const creaturePositions = await promptPositionList(rl);
+    const moves = await promptMoves(rl);
 
     return {
         gridSize,

@@ -45,16 +45,16 @@ describe('LoggerService', () => {
         loggerService.onSimulationEnd(zombiePositions, creaturePositions);
         const logs = loggerService.getLogs();
         expect(logs.length).toBe(2);
-        expect(logs[0]).toBe("zombies' positions:\n(5, 6) (7, 8).");
-        expect(logs[1]).toBe("creatures' positions:\n(9, 10).");
+        expect(logs[0]).toBe("zombies' positions:\n(5, 6) (7, 8)");
+        expect(logs[1]).toBe("creatures' positions:\n(9, 10)");
     });
 
     it('should log simulation end with no zombies and no creatures', () => {
         loggerService.onSimulationEnd([], []);
         const logs = loggerService.getLogs();
         expect(logs.length).toBe(2);
-        expect(logs[0]).toBe("zombies' positions:\nnone.");
-        expect(logs[1]).toBe("creatures' positions:\nnone.");
+        expect(logs[0]).toBe("zombies' positions:\nnone");
+        expect(logs[1]).toBe("creatures' positions:\nnone");
     });
 
     it('should return logs', () => {
