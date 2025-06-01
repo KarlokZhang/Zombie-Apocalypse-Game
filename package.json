@@ -4,27 +4,34 @@
   "description": "Zombie apocalypse game.",
   "author": "Geoge Cheung",
   "license": "MIT",
-  "type": "commonjs",
+  "type": "module",
   "main": "index.js",
   "scripts": {
-    "start": "ts-node src/index.ts",
-    "test": "jest",
-    "test:watch": "jest --watch",
-    "test:coverage": "jest --coverage",
-    "lint": "eslint src/**/*.ts",
+    "format:check": "prettier --check 'src/**/*.{ts,js,json,md}'",
+    "format": "prettier --write 'src/**/*.{ts,js,json,md}'",
     "lint:fix": "eslint src/**/*.ts --fix",
-    "format": "prettier --write 'src/**/*.{ts,js,json,md}'"
+    "lint": "eslint src/**/*.ts",
+    "start": "ts-node src/index.ts",
+    "test:coverage": "jest --coverage",
+    "test:watch": "jest --watch",
+    "test": "jest",
+    "type-check": "tsc --noEmit",
+    "verify": "npm run lint && npm run type-check && npm run format:check && npm run test"
   },
   "homepage": "https://github.com/KarlokZhang/Zombie-Apocalypse-Game#readme",
   "devDependencies": {
+    "@eslint/js": "^9.28.0",
     "@trivago/prettier-plugin-sort-imports": "^5.2.2",
     "@types/jest": "^29.5.14",
     "@types/node": "^22.15.29",
-    "eslint": "^2.10.2",
+    "@typescript-eslint/parser": "^8.33.0",
+    "eslint": "^9.28.0",
+    "husky": "^9.1.7",
     "jest": "^29.7.0",
     "prettier": "^3.5.3",
     "ts-jest": "^29.3.4",
     "ts-node": "^10.9.2",
-    "typescript": "^5.8.3"
+    "typescript": "^5.8.3",
+    "typescript-eslint": "^8.33.0"
   }
 }
