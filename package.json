@@ -1,0 +1,21 @@
+{
+  "name": "zombie-apocalypse-game",
+  "version": "1.0.0",
+  "description": "Zombie apocalypse game.",
+  "author": "Geoge Cheung",
+  "license": "MIT",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "homepage": "https://github.com/KarlokZhang/Zombie-Apocalypse-Game#readme",
+  "devDependencies": {
+    "@trivago/prettier-plugin-sort-imports": "^5.2.2",
+    "@types/node": "^22.15.29",
+    "exlint": "^0.1.6",
+    "prettier": "^3.5.3",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.8.3"
+  }
+}
