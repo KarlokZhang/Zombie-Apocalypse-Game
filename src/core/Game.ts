@@ -63,7 +63,7 @@ export class Game {
             const nextPosition = this.movement.move(currentPosition, direction, this.grid.getSize());
 
             this.notifyZombieMovement(zombie.getZombieIndex(), currentPosition, direction, nextPosition);
-            this.checkAndProcessInfection(nextPosition);
+            this.checkAndProcessInfection(zombie.getZombieIndex(), nextPosition);
             zombie.setPosition(nextPosition);
         }
     }
@@ -79,7 +79,7 @@ export class Game {
         }
     }
 
-    private checkAndProcessInfection(nextPosition: Position): void {
+    private checkAndProcessInfection(zombieIndex: string, nextPosition: Position): void {
         const entity = this.grid.getEntityByPosition(nextPosition);
         if (!entity) {
             return;
@@ -95,7 +95,7 @@ export class Game {
         this.grid.addEntity(newZombie);
         this.zombieQueue.push(newZombie);
 
-        this.notifyInfection(newZombie.getZombieIndex(), nextPosition);
+        this.notifyInfection(zombieIndex, nextPosition);
     }
 
     private notifyInfection(zombieIndex: string, position: Position): void {
