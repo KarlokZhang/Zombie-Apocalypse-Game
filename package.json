@@ -10,7 +10,7 @@
     "lint:fix": "eslint src/**/*.ts --fix",
     "lint": "eslint src/**/*.ts",
     "prepare": "husky",
-    "start": "ts-node src/app.ts",
+    "start": "ts-node index.ts",
     "test:coverage": "jest --coverage",
     "test:watch": "jest --watch",
     "test": "jest",
