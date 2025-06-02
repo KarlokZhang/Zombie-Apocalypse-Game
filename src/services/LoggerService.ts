@@ -22,14 +22,16 @@ export class LoggerService implements IGameObserver {
         }
     }
 
-    onZombieMove(zombieId: string, currentPosition: Position, direction: Direction, nextPosition: Position): void {
-        const logMessage = `Zombie ${zombieId} from ${currentPosition.toString()} moved ${directionMap[direction]} to ${nextPosition.toString()}.`;
+    onZombieMove(zombieIndex: string, currentPosition: Position, direction: Direction, nextPosition: Position): void {
+        const logMessage = `Zombie ${zombieIndex} from ${currentPosition.toString()} moved ${directionMap[direction]} to ${nextPosition.toString()}.`;
         this.logs.push(logMessage);
+        console.log(logMessage);
     }
 
     onInfection(zombieId: string, position: Position): void {
         const logMessage = `Zombie ${zombieId} infected creature at ${position.toString()}.`;
         this.logs.push(logMessage);
+        console.log(logMessage);
     }
 
     onSimulationEnd(zombiePositions: Position[], creaturePositions: Position[]): void {
