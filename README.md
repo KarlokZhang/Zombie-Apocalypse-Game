@@ -112,4 +112,10 @@ The project uses both Jest for unit testing ntegration testing:
 
 ### Test Results
 
+Unit test result with coverage:
+
 ![Unit Test](./public/testResults.png)
+
+Game simulation with given example input:
+
+![Game Simulation Test](./public/gameSimulation.png)
